@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'done.dart';
 
 class NameRequestScreen extends StatefulWidget {
+  const NameRequestScreen({super.key});
+
   @override
   _NameRequestScreenState createState() => _NameRequestScreenState();
 }
