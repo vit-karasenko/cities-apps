@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "902784848975",
+    "project_id": "cities-apps",
+    "storage_bucket": "cities-apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902784848975:android:33f9931c590058ae5f863a",
+        "android_client_info": {
+          "package_name": "com.example.phoneauth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBd9WBLHmK7Bl-_Wq1xtCKs5AvNzcFHT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
