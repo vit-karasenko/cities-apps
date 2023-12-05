@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'done.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OTPScreen extends StatefulWidget {
   final String verificationId;
@@ -48,10 +49,16 @@ class _OTPScreenState extends State<OTPScreen> {
         smsCode: _otpController.text.trim(),
       );
       await _auth.signInWithCredential(authCredential);
+      await _setLoggedInFlag();
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Done()));
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<void> _setLoggedInFlag() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'otp_screen.dart';
 import 'done.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -70,6 +71,7 @@ class _HomeState extends State<Home> {
       phoneNumber: phoneNumber,
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _auth.signInWithCredential(credential);
+        await _setLoggedInFlag();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Done()),
@@ -98,6 +100,11 @@ class _HomeState extends State<Home> {
       },
       timeout: Duration(seconds: 60),
     );
+  }
+
+  Future<void> _setLoggedInFlag() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);
   }
 
   void _showErrorDialog(String? message) {
