@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'done.dart';
 
 class NameRequestScreen extends StatefulWidget {
@@ -38,8 +39,12 @@ class _NameRequestScreenState extends State<NameRequestScreen> {
   }
 
   void _saveName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('userName', _nameController.text);
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+        'name': _nameController.text,
+      });
+    }
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Done()));
   }
 }
