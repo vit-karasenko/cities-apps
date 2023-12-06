@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'home.dart'; // Убедитесь, что вы импортировали страницу входа
+import 'Login.dart';
 
 class ExampleSidebarX extends StatelessWidget {
   const ExampleSidebarX({
@@ -85,7 +85,7 @@ class ExampleSidebarX extends StatelessWidget {
           label: 'Выйти',
           onTap: () async {
             await FirebaseAuth.instance.signOut();
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Home()));
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Login()));
           },
         ),
       ],

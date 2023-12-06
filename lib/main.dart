@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'pages/home.dart';
+import 'pages/Login.dart';
 import 'pages/done.dart';
 
 void main() async {
@@ -47,7 +47,7 @@ class _AuthCheckerState extends State<AuthChecker> {
     if (FirebaseAuth.instance.currentUser != null && isLoggedIn) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Done()));
     } else {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Home()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Login()));
     }
   }
 
