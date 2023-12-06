@@ -45,12 +45,35 @@ class _OTPScreenState extends State<OTPScreen> {
 
   Future<void> _signInWithOTP() async {
     try {
-      final authCredential = PhoneAuthProvider.credential(
-        verificationId: widget.verificationId,
-        smsCode: _otpController.text.trim(),
+      final PhoneVerificationCompleted verificationCompleted =
+          (PhoneAuthCredential phoneAuthCredential) async {
+        await _auth.signInWithCredential(phoneAuthCredential);
+        await _checkAndNavigate();
+      };
+
+      final PhoneVerificationFailed verificationFailed =
+          (FirebaseAuthException authException) {
+        _showErrorDialog('Ошибка аутентификации: ${authException.message}');
+      };
+
+      final PhoneCodeSent codeSent =
+          (String verificationId, [int? forceResendingToken]) async {
+        // Обработка отправки кода
+      };
+
+      final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
+          (String verificationId) {
+        // Обработка тайм-аута
+      };
+
+      await _auth.verifyPhoneNumber(
+        phoneNumber: '+1234567890', // Замените на номер телефона пользователя
+        timeout: const Duration(seconds: 60),
+        verificationCompleted: verificationCompleted,
+        verificationFailed: verificationFailed,
+        codeSent: codeSent,
+        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
       );
-      await _auth.signInWithCredential(authCredential);
-      await _checkAndNavigate();
     } catch (e) {
       _showErrorDialog(e.toString());
     }
