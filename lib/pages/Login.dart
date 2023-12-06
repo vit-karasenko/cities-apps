@@ -15,6 +15,7 @@ class _LoginState extends State<Login> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _isLoading = false;
+  int? _resendToken; // Добавленная переменная для хранения resendToken
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +87,7 @@ class _LoginState extends State<Login> {
       codeSent: (String verificationId, int? resendToken) async {
         setState(() {
           _isLoading = false;
+          _resendToken = resendToken; // Обновление resendToken
         });
         Navigator.push(
           context,
@@ -99,6 +101,7 @@ class _LoginState extends State<Login> {
         });
       },
       timeout: Duration(seconds: 60),
+      forceResendingToken: _resendToken, // Использование _resendToken
     );
   }
 
