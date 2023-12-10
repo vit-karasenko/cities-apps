@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'notification_service.dart';
 
 class NotificationsScreen extends StatefulWidget {
   @override
@@ -6,8 +7,8 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
-  bool airRaidAlert = false;
   bool curfewReminder = false;
+  final NotificationService _notificationService = NotificationService();
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +19,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       body: ListView(
         children: <Widget>[
           SwitchListTile(
-            title: Text('Уведомление о воздушной тревоге'),
-            value: airRaidAlert,
-            onChanged: (bool value) {
-              setState(() {
-                airRaidAlert = value;
-              });
-            },
-          ),
-          SwitchListTile(
             title: Text('Напоминание о комендантском времени'),
             value: curfewReminder,
             onChanged: (bool value) {
@@ -34,6 +26,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 curfewReminder = value;
               });
             },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: ElevatedButton(
+              onPressed: () => _notificationService.showInstantCurfewNotification(),
+              child: Text('Моментальное уведомление о комендантском часе'),
+            ),
           ),
         ],
       ),

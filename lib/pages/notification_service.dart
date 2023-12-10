@@ -46,6 +46,24 @@ class NotificationService {
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }
+  void showInstantCurfewNotification() async {
+    var androidDetails = AndroidNotificationDetails(
+      'instant_curfew_channel_id',
+      'Моментальное уведомление о комендантском часе',
+      channelDescription: 'Моментальное уведомление о начале комендантского часа',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
+    var platformDetails = NotificationDetails(android: androidDetails);
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Комендантский час',
+      'Комендантский час начался. Пожалуйста, оставайтесь дома.',
+      platformDetails,
+    );
+  }
 
   tz.TZDateTime _nextInstanceOfTenPM() {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
