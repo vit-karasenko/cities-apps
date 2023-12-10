@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'Login.dart';
+import 'settings_screen.dart';
 
 class ExampleSidebarX extends StatelessWidget {
   const ExampleSidebarX({
@@ -79,7 +80,13 @@ class ExampleSidebarX extends StatelessWidget {
           },
         ),
         // ... Другие пункты меню ...
-
+        SidebarXItem(
+          icon: Icons.settings,
+          label: 'Настройки',
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => SettingsScreen()));
+          },
+        ),
         SidebarXItem(
           icon: Icons.exit_to_app,
           label: 'Выйти',
