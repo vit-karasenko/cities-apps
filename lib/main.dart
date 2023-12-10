@@ -4,10 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/Login.dart';
 import 'pages/done.dart';
+import 'pages/notification_service.dart'; // Убедитесь, что путь к файлу верный
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  final NotificationService _notificationService = NotificationService();
+  _notificationService.init(); // Инициализация сервиса уведомлений
   runApp(MyApp());
 }
 

@@ -11,6 +11,7 @@ class NotificationService {
   }
 
   void init() async {
+    print("Инициализация уведомлений");
     tz.initializeTimeZones();
 
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -24,6 +25,7 @@ class NotificationService {
   }
 
   Future<void> scheduleCurfewNotification() async {
+    print("Планирование уведомления о комендантском часе");
     var scheduledTime = _nextInstanceOfTenPM();
     var androidDetails = AndroidNotificationDetails(
       'curfew_channel_id',
@@ -37,7 +39,7 @@ class NotificationService {
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
       0,
-      'Комендантский час1',
+      'Комендантский час',
       'Комендантский час начался. Пожалуйста, оставайтесь дома.',
       scheduledTime,
       platformDetails,
@@ -46,7 +48,9 @@ class NotificationService {
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }
-  void showInstantCurfewNotification() async {
+
+  Future<void> showInstantCurfewNotification() async {
+    print("Отправка моментального уведомления о комендантском часе");
     var androidDetails = AndroidNotificationDetails(
       'instant_curfew_channel_id',
       'Моментальное уведомление о комендантском часе',
