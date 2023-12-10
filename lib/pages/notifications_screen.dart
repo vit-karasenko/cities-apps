@@ -14,7 +14,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Уведомления'),
+        title: Text('Уведомления1'),
       ),
       body: ListView(
         children: <Widget>[

@@ -37,7 +37,7 @@ class NotificationService {
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
       0,
-      'Комендантский час',
+      'Комендантский час1',
       'Комендантский час начался. Пожалуйста, оставайтесь дома.',
       scheduledTime,
       platformDetails,
