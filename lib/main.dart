@@ -9,8 +9,8 @@ import 'pages/notification_service.dart'; // Убедитесь, что путь
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  final NotificationService _notificationService = NotificationService();
-  _notificationService.init(); // Инициализация сервиса уведомлений
+  final NotificationService notificationService = NotificationService();
+  notificationService.init(); // Инициализация сервиса уведомлений
   runApp(MyApp());
 }
 
