@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'notifications_screen.dart';
+import 'street_selection_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -15,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             title: Text('Вийти'),
             onTap: () {
-              // Здесь должен быть код для выхода из сессии
+              // Код для выхода из сессии
             },
           ),
           ListTile(
@@ -24,6 +25,15 @@ class SettingsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => NotificationsScreen()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Выбор улицы и дома'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => StreetSelectionScreen()),
               );
             },
           ),
